@@ -1,0 +1,18 @@
+:root {
+  /* color */
+  --white: #ffffff;
+  --primary: #FFD23F;
+  --secondary: #EE4266;
+  --gray: #7b7b7b;
+  --black: #0A0A0C;
+
+  /* text color */
+  --text-black: #323232;
+  --text-gray: #515151;
+}
+
+/* =====Container===== */
+.container {
+  max-width: 1360px !important;
+  margin-inline: auto;
+}

@@ -1,0 +1,147 @@
+.nav-items {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 0;
+    z-index: 99;
+    background-color: #fff;
+    transition: 0.3s width linear;
+    padding: 0;
+    overflow: auto;
+
+
+}
+
+.navbar-shadow {
+    box-shadow: 0px 12px 26px 0px rgba(0, 0, 0, 0.10), 0px 47px 47px 0px rgba(0, 0, 0, 0.09), 0px 106px 64px 0px rgba(0, 0, 0, 0.05), 0px 189px 75px 0px rgba(0, 0, 0, 0.01), 0px 295px 82px 0px rgba(0, 0, 0, 0.00);
+}
+
+.nav-items.show {
+    width: 346px;
+}
+
+.nav-item {
+    position: relative;
+
+}
+
+.nav-item.submenu {
+    position: relative;
+
+}
+
+.nav-item.submenu:hover {
+    color: #fff;
+
+}
+
+.dropdown {
+    display: grid;
+    transition: grid-template-rows 0.5s ease-in-out;
+    grid-template-rows: 0fr;
+}
+
+.dropdown-show {
+    grid-template-rows: 1fr;
+}
+
+.dropdown>.mobile-navs {
+    overflow: hidden;
+
+}
+
+
+.nav-item::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background: #EE4266;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+/* .nav-item.submenu::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    background: #EE4266;
+    width: 0;
+    transition: width 0.3s ease;
+    z-index: -1;
+} */
+
+.nav-item:hover::before {
+    width: 100%;
+
+}
+
+.nav-item.submenu:hover::before {
+    width: 100%;
+
+}
+
+.nav-item.active::before {
+    width: 100%;
+}
+
+.close-icon {}
+
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us-btn {
+    scale: 1;
+    transition: scale 0.3s ease;
+}
+
+.contact-us-btn:hover {
+    scale: 1.1;
+}
+
+.contact-us-btn:focus {
+    scale: 0.9;
+}
+
+.mobile-submenu li {
+    position: relative;
+}
+
+.mobile-submenu li:nth-child(1)::after,
+.mobile-submenu li:nth-child(2)::after,
+.mobile-submenu li:nth-child(3)::after,
+.mobile-submenu li:nth-child(4)::after,
+.mobile-submenu li:nth-child(5)::after {
+    /* content: ''; */
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: lightgray;
+
+
+}
