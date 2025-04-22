@@ -30,7 +30,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-[var(--black)] text-white p-4" id="navbar">
+        <div className="navbar bg-[var(--black)] text-white py-4" id="navbar">
             <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
                 <Link href="/" replace={true}>
                     <Image
@@ -152,19 +152,19 @@ const Navbar = () => {
 
                                         <div>
                                             <Link
-                                                href="/blog"
-                                                className={`${pathname === "/blogs"
+                                                href="/blogs"
+                                                className={`${(pathname === "/blogs" || pathname.startsWith("/blogs/"))
                                                     ? "font-semibold active"
                                                     : "font-medium"
                                                     } whitespace-nowrap block w-full`}
                                                 onClick={closeNavbar}
                                             >
-                                                Blog
+                                                Blogs
                                             </Link>
                                         </div>
                                         <div>
                                             <Link
-                                                href="/contact"
+                                                href="/contact-us"
                                                 className={`${pathname === "/contact-us"
                                                     ? "font-semibold active"
                                                     : "font-medium"
@@ -336,19 +336,19 @@ const Navbar = () => {
                             <div className="">
                                 <Link
                                     href="/blogs"
-                                    className={`${pathname === "/blogs"
+                                    className={`${(pathname === "/blogs" || pathname.startsWith("/blogs/"))
                                         ? "font-semibold nav-item active flex items-center gap-1"
                                         : "font-medium nav-item flex items-center gap-1"
                                         } `}
                                 >
-                                    Blog
+                                    Blogs
                                 </Link>
                             </div>
 
                             <div className="">
                                 <Link
                                     href="/contact-us"
-                                    className={`${pathname === "/contact-us/"
+                                    className={`${pathname === "/contact-us"
                                         ? "font-semibold nav-item active flex items-center gap-1"
                                         : "font-medium nav-item flex items-center gap-1"
                                         } `}

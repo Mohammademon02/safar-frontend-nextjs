@@ -6,7 +6,7 @@ import PageTitleHeader from "@/components/PageTitleHeader/PageTitleHeader";
 const BlogPage = async () => {
     return (
         <>
-            <PageTitleHeader title="Blog" page_link="blogs" />
+            <PageTitleHeader title="Blogs" page_link="blogs" />
             <BlogGrid />
         </>
     );
