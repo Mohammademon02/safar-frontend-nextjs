@@ -1,5 +1,6 @@
 import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import ContactForm from '@/components/ContactFrom/ContactForm';
+import DownloadApp from '@/components/DownloadApp/DownloadApp';
 import PageTitleHeader from '@/components/PageTitleHeader/PageTitleHeader';
 
 export default function page() {
@@ -15,6 +16,8 @@ export default function page() {
                 <SectionTitle title="Contact Us" description="Any question or remarks? Just write us a message!" />
                 <ContactForm />
             </div>
+
+            <DownloadApp />
         </>
     );
 }

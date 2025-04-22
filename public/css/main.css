@@ -17,3 +17,48 @@
   max-width: 1360px !important;
   margin-inline: auto;
 }
+
+
+/*
+ *  STYLE 2 Scrollbar
+ */
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #EE4266;
+}
+
+/* To use this scrollbar globally */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #EE4266 #F5F5F5;
+  /* For Firefox */
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #EE4266;
+}

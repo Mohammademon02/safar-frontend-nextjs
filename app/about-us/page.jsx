@@ -3,6 +3,7 @@ import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import { blogs } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
+import DownloadApp from '@/components/DownloadApp/DownloadApp';
 
 export default function page() {
     return (
@@ -77,6 +78,8 @@ export default function page() {
                     </Link>
                 </div>
             </div>
+
+            <DownloadApp />
         </>
     );
 }

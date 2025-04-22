@@ -1,6 +1,7 @@
 import PageTitleHeader from '@/components/PageTitleHeader/PageTitleHeader';
 import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import ServiceCardsSection from '@/components/ServiceCardsSection/ServiceCardsSection';
+import DownloadApp from '@/components/DownloadApp/DownloadApp';
 
 export default function page() {
 
@@ -24,6 +25,7 @@ export default function page() {
             </div>
 
             <ServiceCardsSection />
+            <DownloadApp />
         </>
     );
 }
