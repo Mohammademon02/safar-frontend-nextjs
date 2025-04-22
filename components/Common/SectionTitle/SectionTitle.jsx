@@ -7,7 +7,7 @@ export default function SectionTitle({ subtitle, title, description }) {
         <div className="text-center max-w-3xl mx-auto px-4 mb-10">
             {/* Subtitle */}
             {subtitle &&
-                <div className="flex items-center justify-center gap-2 text-[var(--primary)] text-sm font-medium mb-2 text-uppercase">
+                <div className="flex items-center justify-center gap-2 text-[var(--primary)] text-sm font-medium mb-2 uppercase">
                     <FaCar className="text-[var(--primary)]" />
                     <span>{subtitle}</span>
                 </div>

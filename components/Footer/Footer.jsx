@@ -7,13 +7,13 @@ import { FaXTwitter, FaYoutube, FaLocationDot, FaPhoneVolume } from "react-icons
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-20">
+    <footer className="bg-[var(--black)] text-white py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className=" flex flex-col md:flex-row justify-between gap-5">
           {/* Logo and Social Media */}
           <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
             <div className="mb-7">
-              <Link href="/" className="text-xl font-bold text-yellow-400">
+              <Link href="/" className="text-xl font-bold">
                 <Image
                   src="/images/safarbd-logo.png"
                   alt="Safar Logo"
@@ -26,24 +26,24 @@ const Footer = () => {
             </div>
 
             <div className="flex space-x-4 mb-4">
-              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[#FFD23F] rounded-full">
+              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[var(--primary)] rounded-full">
                 <FaFacebookF />
               </Link>
-              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[#FFD23F] rounded-full">
+              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[var(--primary)] rounded-full">
                 <FaInstagram />
               </Link>
-              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[#FFD23F] rounded-full">
+              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[var(--primary)] rounded-full">
                 <FaXTwitter />
               </Link>
-              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[#FFD23F] rounded-full">
+              <Link href="#" className="h-8 w-8 flex items-center justify-center bg-[var(--primary)] rounded-full">
                 <FaYoutube />
               </Link>
             </div>
 
             {/* Advice Section */}
             <div className="flex flex-col items-center md:items-start">
-              <label htmlFor="advice" className="text-lg text-white font-bold mb-[6px]">
-                Your Advice
+              <label htmlFor="advice" className="text-base text-white mb-[6px]">
+                Subscribe to our Newsletter
               </label>
               <div className="messageBox">
                 <div className="fileUploadWrapper">
@@ -78,16 +78,16 @@ const Footer = () => {
           <div className="mb-4 md:mb-0 flex flex-col items-center md:items-start">
             <h4 className="text-lg text-white font-bold mb-8">Company</h4>
             <div className="flex items-center gap-3 mb-4">
-              <span><FaLocationDot /></span>
-              <span>Debiddar, Cumilla</span>
+              <Link href="/about-us" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">About Us</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
-              <span><FaPhoneVolume /></span>
-              <Link href="tel:+8807811905127" className="text-white">+8807811905127</Link>
+              <Link href="/blogs" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Blogs</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
-              <span><IoMail /></span>
-              <Link href="mailto:saft.bd@gmail.com" className="text-white">saft.bd@gmail.com</Link>
+              <Link href="/testimonials" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Testimonials</Link>
+            </div>
+            <div className="flex items-center gap-3 mb-4">
+              <Link href="/contact-us" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Contact Us</Link>
             </div>
           </div>
 
@@ -96,15 +96,15 @@ const Footer = () => {
             <h4 className="text-lg text-white font-bold mb-8">Contact Us</h4>
             <div className="flex items-center gap-3 mb-4">
               <span><FaLocationDot /></span>
-              <span>Debiddar, Cumilla</span>
+                <Link href="/contact-us" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Debiddar, Cumilla</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
               <span><FaPhoneVolume /></span>
-              <Link href="tel:+8807811905127" className="text-white">+8807811905127</Link>
+              <Link href="tel:+8807811905127" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">+8807811905127</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
               <span><IoMail /></span>
-              <Link href="mailto:saft.bd@gmail.com" className="text-white">saft.bd@gmail.com</Link>
+              <Link href="mailto:saft.bd@gmail.com" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">saft.bd@gmail.com</Link>
             </div>
           </div>
 

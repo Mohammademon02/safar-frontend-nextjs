@@ -47,7 +47,7 @@ export default function BlogGrid() {
 
               <Link
                 href={`/blogs/${blog?.slug}`}
-                className="mt-4 inline-flex items-center gap-1 text-sm text-[var(--secondary)] hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] px-4 py-2 rounded-full transition"
+                className="mt-4 inline-flex items-center gap-1 text-sm text-[var(--secondary)] hover:text-white hover:bg-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] px-4 py-2 rounded-full transition cursor-pointer"
               >
                 Read More
                 <svg
@@ -71,7 +71,7 @@ export default function BlogGrid() {
       </div>
 
       {visibleBlogs < blogs.length && (
-        <div className="text-center mt-10">
+        <div className="text-center mt-6">
           <button
             onClick={handleLoadMore}
             className="text-sm text-[var(--text-black)] font-medium"

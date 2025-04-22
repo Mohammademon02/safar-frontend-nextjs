@@ -84,14 +84,15 @@ const Navbar = () => {
                                                     : "font-medium"
                                                     } whitespace-nowrap flex items-center justify-between`}
                                             >
-                                                Services <MdKeyboardArrowDown />
+                                                Services 
+                                                {/* <MdKeyboardArrowDown /> */}
                                             </Link>
-                                            <div
+                                            {/*<div
                                                 className={`${mobileDropdownShow && "dropdown-show"
                                                     } dropdown`}
                                             >
                                                 <div className="mobile-navs">
-                                                    {/* <ul className={` p-2 mobile-submenu space-y-3`}>
+                                                     <ul className={` p-2 mobile-submenu space-y-3`}>
                                                         <li>
                                                             <Link
                                                                 className="text-base flex gap-2 items-center"
@@ -132,9 +133,9 @@ const Navbar = () => {
                                                                 Product Upload and Maintenance
                                                             </Link>
                                                         </li>
-                                                    </ul> */}
+                                                    </ul> 
                                                 </div>
-                                            </div>
+                                            </div>*/}
                                         </div>
 
                                         <div>
@@ -251,12 +252,14 @@ const Navbar = () => {
                                 <Link
                                     href="/services"
                                     replace={true}
-                                    className={`${pathname === "/services/"
+                                    className={`${pathname === "/services"
                                         ? "font-semibold nav-item active flex items-center gap-1"
                                         : "font-medium nav-item flex items-center  gap-1"
                                         } `}
                                 >
-                                    Services <MdKeyboardArrowDown />
+                                    Services 
+                                    
+                                    {/* <MdKeyboardArrowDown /> */}
                                 </Link>
 
                                 {/* <ul className="hidden group-hover:flex flex-wrap navbar-shadow gap-y-5 w-full absolute bottom-0 left-0 translate-y-full  bg-white border z-10 font-medium p-4 rounded-lg ">
