@@ -1,24 +1,14 @@
-import PageBanner from "@/components/PageBanner/PageBanner";
+import BlogGrid from "@/components/BlogGrid/BlogGrid";
+import PageTitleHeader from "@/components/PageTitleHeader/PageTitleHeader";
 
 
 
 const BlogPage = async () => {
     return (
-        <main>
-
-            {/* ======Page Banner Section====== */}
-            <PageBanner
-                title="Blog"
-                subtitle="Experience the freedom of the road with our affordable rentals."
-            />
-
-            {/* ======All Blobs Section====== */}
-            {/* <AllBlogs /> */}
-
-            {/* ======Download App Section====== */}
-            {/* <DownloadAppS/ection /> */}
-
-        </main>
+        <>
+            <PageTitleHeader title="Blog" page_link="blogs" />
+            <BlogGrid />
+        </>
     );
 };
 
