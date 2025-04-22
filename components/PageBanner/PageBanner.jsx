@@ -4,20 +4,14 @@ import Image from 'next/image';
 const PageBanner = ({ title, subtitle }) => {
     return (
         <section className="relative">
-            {/* Background Image */}
-            {/* <img
-                src="/images/pageBanner-img.jpg"
-                alt="Banner Background"
-                className="w-full h-[500px] object-cover"
-            /> */}
 
             <Image
                 src="/images/pageBanner-img.jpg"
                 alt="Banner Background"
-                width={1920} // Provide an appropriate width
-                height={500} // Provide an appropriate height
-                className="w-full h-[500px] object-cover" // Retain Tailwind classes
-                priority // Use priority if this image is above the fold
+                width={1920}
+                height={500}
+                className="w-full h-[500px] object-cover"
+                priority
             />
 
             {/* Overlay */}
