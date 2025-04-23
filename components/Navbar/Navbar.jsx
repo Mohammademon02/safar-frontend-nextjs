@@ -30,7 +30,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-[var(--black)] text-white py-4" id="navbar">
+        <header className="navbar bg-[var(--black)] text-white py-4 header" id="navbar">
             <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
                 <Link href="/" replace={true}>
                     <Image
@@ -147,7 +147,7 @@ const Navbar = () => {
                                                     } whitespace-nowrap block w-full`}
                                                 onClick={closeNavbar}
                                             >
-                                                About
+                                                About Us
                                             </Link>
                                         </div>
 
@@ -326,7 +326,7 @@ const Navbar = () => {
                             <div className="">
                                 <Link
                                     href="/about-us"
-                                    className={`${pathname === "/about-us/"
+                                    className={`${pathname === "/about-us"
                                         ? "font-semibold nav-item active flex items-center gap-1"
                                         : "font-medium nav-item flex items-center gap-1"
                                         } `}
@@ -379,7 +379,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             </nav>
-        </div>
+        </header>
     );
 };
 
