@@ -2,6 +2,7 @@ import PageTitleHeader from '@/components/PageTitleHeader/PageTitleHeader';
 import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import ServiceCardsSection from '@/components/ServiceCardsSection/ServiceCardsSection';
 import DownloadApp from '@/components/DownloadApp/DownloadApp';
+import JoinUsSection from '@/components/JoinUsSection/JoinUsSectionl';
 
 export default function page() {
 
@@ -25,6 +26,7 @@ export default function page() {
             </div>
 
             <ServiceCardsSection />
+            <JoinUsSection />
             <DownloadApp />
         </>
     );
