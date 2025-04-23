@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import NextTopLoader from "nextjs-toploader";
 import ScrollTop from "@/components/Common/ScrollTop/ScrollTop";
 import "@/app/globals.css";
 import "@/public/css/custom.css";
@@ -27,6 +28,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader
+          color='#EE4266'
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          easing='ease'
+          speed={200}
+          zIndex={1600}
+          showAtBottom={false}
+          showSpinner={false}
+        />
         <Navbar />
         {children}
         <Footer />
