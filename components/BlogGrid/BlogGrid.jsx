@@ -14,7 +14,7 @@ export default function BlogGrid() {
   };
 
   return (
-    <div className="container px-4 sm:px-6 lg:px-8 pb-10">
+    <div className="container px-4 sm:px-6 lg:px-8 pb-20">
       <SectionTitle
         subtitle="Blogs"
         title="Explore Our Blogs"

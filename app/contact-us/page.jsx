@@ -12,7 +12,7 @@ export default function page() {
                 page_link='contact-us'
             />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20">
                 <SectionTitle title="Contact Us" description="Any question or remarks? Just write us a message!" />
                 <ContactForm />
             </div>

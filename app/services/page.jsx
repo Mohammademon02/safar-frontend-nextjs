@@ -3,6 +3,7 @@ import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import ServiceCardsSection from '@/components/ServiceCardsSection/ServiceCardsSection';
 import DownloadApp from '@/components/DownloadApp/DownloadApp';
 import JoinUsSection from '@/components/JoinUsSection/JoinUsSectionl';
+import OurFleet from '@/components/OurFleet/OurFleet';
 
 export default function page() {
 
@@ -26,6 +27,7 @@ export default function page() {
             </div>
 
             <ServiceCardsSection />
+            <OurFleet />
             <JoinUsSection />
             <DownloadApp />
         </>
