@@ -7,7 +7,7 @@ import { FaXTwitter, FaYoutube, FaLocationDot, FaPhoneVolume } from "react-icons
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--black)] text-white py-20">
+    <footer className="bg-[var(--black)] text-white pt-20 pb-11">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className=" flex flex-col md:flex-row justify-between gap-5">
           {/* Logo and Social Media */}
@@ -96,7 +96,7 @@ const Footer = () => {
             <h4 className="text-lg text-white font-bold mb-8">Contact Us</h4>
             <div className="flex items-center gap-3 mb-4">
               <span><FaLocationDot /></span>
-                <Link href="/contact-us" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Debiddar, Cumilla</Link>
+              <Link href="/contact-us" className="text-white transition duration-300 ease-in-out hover:text-[var(--secondary)]">Debiddar, Cumilla</Link>
             </div>
             <div className="flex items-center gap-3 mb-4">
               <span><FaPhoneVolume /></span>
@@ -132,6 +132,15 @@ const Footer = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div>
+          <span className="flex items-center pt-11">
+            <span className="h-px flex-1 bg-[#A3A3A3]"></span>
+
+            <span className="shrink-0 px-4 text-[#A3A3A3]"> Copyright @2025 </span>
+
+            <span className="h-px flex-1 bg-[#A3A3A3]"></span>
+          </span>
         </div>
       </div>
     </footer>

@@ -22,9 +22,6 @@ export default function page() {
                 </div>
             </div>
 
-            <div className='container mx-auto px-4 sm:px-6 lg:px-8 pb-10'>
-
-            </div>
 
             <ServiceCardsSection />
             <OurFleet />
