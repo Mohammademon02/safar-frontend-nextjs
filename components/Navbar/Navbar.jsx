@@ -55,7 +55,7 @@ const Navbar = () => {
                         >
                             <div className="p-4 w-full">
                                 <span
-                                    className="close-icon inline-block text-sm rounded-full bg-[#212121] text-[#FFFFFF] p-[7px]"
+                                    className="close-icon inline-block text-sm rounded-full bg-[#212121] text-[#FFFFFF] p-[7px] cursor-pointer"
                                     onClick={closeNavbar}
                                 >
                                     <CgClose />
@@ -69,7 +69,7 @@ const Navbar = () => {
                                                 className={`${pathname === "/"
                                                     ? "font-semibold active"
                                                     : "font-medium"
-                                                    } whitespace-nowrap flex items-center`}
+                                                    } whitespace-nowrap flex items-center text-[var(--text-black)]`}
                                                 onClick={closeNavbar}
                                             >
                                                 Home
@@ -82,7 +82,7 @@ const Navbar = () => {
                                                 className={`${pathname === "/services"
                                                     ? "font-semibold active"
                                                     : "font-medium"
-                                                    } whitespace-nowrap flex items-center justify-between`}
+                                                    } whitespace-nowrap flex items-center justify-between text-[var(--text-black)]`}
                                             >
                                                 Services 
                                                 {/* <MdKeyboardArrowDown /> */}
@@ -144,7 +144,7 @@ const Navbar = () => {
                                                 className={`${pathname === "/about-us"
                                                     ? "font-semibold active"
                                                     : "font-medium"
-                                                    } whitespace-nowrap block w-full`}
+                                                    } whitespace-nowrap block w-full text-[var(--text-black)]`}
                                                 onClick={closeNavbar}
                                             >
                                                 About Us
@@ -157,7 +157,7 @@ const Navbar = () => {
                                                 className={`${(pathname === "/blogs" || pathname.startsWith("/blogs/"))
                                                     ? "font-semibold active"
                                                     : "font-medium"
-                                                    } whitespace-nowrap block w-full`}
+                                                    } whitespace-nowrap block w-full text-[var(--text-black)]`}
                                                 onClick={closeNavbar}
                                             >
                                                 Blogs
@@ -178,7 +178,7 @@ const Navbar = () => {
 
                                     </div>
 
-                                    <h2 className="text-center text-2xl font-semibold mt-10 whitespace-nowrap">
+                                    <h2 className="text-center text-2xl font-semibold mt-10 whitespace-nowrap text-[var(--text-black)]">
                                         Follow Us
                                     </h2>
                                     <div className="mt-2 flex items-center justify-center gap-5 whitespace-nowrap">
@@ -187,7 +187,7 @@ const Navbar = () => {
                                             name="link"
                                             role="link"
                                             aria-label="Facebook link"
-                                            className="bg-[var(--primary)] text-[#FFFFFF] p-3 rounded-full"
+                                            className="bg-[var(--secondary)] text-[#FFFFFF] hover:bg-white hover:text-[var(--secondary)] border border-[var(--secondary)] p-3 rounded-full"
                                         >
                                             <span aria-hidden="true">
                                                 <FaFacebookF />
@@ -199,7 +199,7 @@ const Navbar = () => {
                                             name="link"
                                             role="link"
                                             aria-label="Twitter link"
-                                            className="bg-[var(--primary)] text-[#FFFFFF] p-3 rounded-full"
+                                            className="bg-[var(--secondary)] text-[#FFFFFF] hover:bg-white hover:text-[var(--secondary)] border border-[var(--secondary)] p-3 rounded-full"
                                         >
                                             <span aria-hidden="true">
                                                 <FaXTwitter />
@@ -211,7 +211,7 @@ const Navbar = () => {
                                             name="link"
                                             role="link"
                                             aria-label="Instagram link"
-                                            className="bg-[var(--primary)] text-[#FFFFFF] p-3 rounded-full"
+                                            className="bg-[var(--secondary)] text-[#FFFFFF] hover:bg-white hover:text-[var(--secondary)] border border-[var(--secondary)] p-3 rounded-full"
                                         >
                                             <span aria-hidden="true">
                                                 <ImInstagram />
@@ -222,7 +222,7 @@ const Navbar = () => {
                                             name="link"
                                             role="link"
                                             aria-label="LinkedIn link"
-                                            className="bg-[var(--primary)] text-[#FFFFFF] p-3 rounded-full"
+                                            className="bg-[var(--secondary)] text-[#FFFFFF] hover:bg-white hover:text-[var(--secondary)] border border-[var(--secondary)] p-3 rounded-full"
                                         >
                                             <span aria-hidden="true">
                                                 <FaLinkedinIn />
