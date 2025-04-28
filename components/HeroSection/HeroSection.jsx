@@ -105,7 +105,7 @@ const HeroSection = () => {
 
                     {/* Search Button */}
                     <div className='px-3'>
-                        <button type="submit" className="bg-[var(--secondary)] text-white rounded-full px-6 py-3 ml-1 flex items-center cursor-pointer">
+                        <button type="submit" className="bg-[var(--secondary)] hover:bg-transparent border border-[var(--secondary)] text-white hover:text-[var(--secondary)] rounded-full px-6 py-3 ml-1 flex items-center cursor-pointer">
                             <span className="mr-2">
                                 <FiSearch />
                             </span>

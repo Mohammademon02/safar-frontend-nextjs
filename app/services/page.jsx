@@ -2,7 +2,7 @@ import PageTitleHeader from '@/components/PageTitleHeader/PageTitleHeader';
 import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import ServiceCardsSection from '@/components/ServiceCardsSection/ServiceCardsSection';
 import DownloadApp from '@/components/DownloadApp/DownloadApp';
-import JoinUsSection from '@/components/JoinUsSection/JoinUsSectionl';
+import JoinUsSection from '@/components/JoinUsSection/JoinUsSection';
 import OurFleet from '@/components/OurFleet/OurFleet';
 
 export default function page() {
