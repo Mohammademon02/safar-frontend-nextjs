@@ -7,32 +7,32 @@ const StayWithUs = () => {
         {
             icon: <MdOutlineVerifiedUser />,
             title: "Safety First",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae."
+            description: "Your safety is our highest priority. Every driver is fully verified and rides are tracked in real-time. Enjoy your journey with complete peace of mind."
         },
         {
             icon: <MdAccessAlarm />,
-            title: "Prices With No Surprises",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae."
+            title: "Prices with no Surprises",
+            description: "Transparent pricing with no hidden charges. Know your fare before you ride. Pay exactly what you see — no last-minute shocks."
         },
         {
             icon: <MdDirectionsCar />,
-            title: "Private Travel Solutions",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae."
+            title: "Private Travel Solution",
+            description: "Experience fully private, sanitized rides for your personal or business needs. No ride-sharing with strangers. Comfort and privacy, guaranteed."
         },
         {
             icon: <MdFlightTakeoff />,
             title: "Assured AC Rides",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae."
+            description: "Every SAFAR ride comes with a guaranteed air-conditioned car. Stay cool and comfortable no matter the weather. We promise a premium ride experience."
         },
         {
             icon: <MdPhoneIphone />,
-            title: "No Ride Refusal.",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae."
+            title: "No Ride Refusal",
+            description: "Once your ride is confirmed, it's guaranteed. No cancellations, no excuses. We’re committed to getting you to your destination without hassle."
         },
         {
             icon: <MdLocalOffer />,
             title: "24x7 Dedicated Support",
-            description: "We’re here to assist you anytime, anywhere. Drive with peace of mind knowing help is just a call away."
+            description: "Our support team is always available—day or night. Get real-time assistance anytime during your ride. Your comfort and concerns are our priority."
         },
     ];
 
