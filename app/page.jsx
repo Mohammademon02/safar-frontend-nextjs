@@ -8,6 +8,7 @@ import SectionTitle from '@/components/Common/SectionTitle/SectionTitle';
 import { blogs } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
+import Stats from "@/components/Stats/Stats";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <OurFleet />
       <HowItWorks />
       <StayWithUs />
+      <Stats />
       <JoinUsSection />
 
       {/* Blog Card Section */}

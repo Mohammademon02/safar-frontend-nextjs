@@ -2,12 +2,12 @@
 import React from 'react';
 import { FaCar } from 'react-icons/fa'; // Icon used in design, adjust if needed
 
-export default function SectionTitle({ subtitle, title, description }) {
+export default function SectionTitle({ subtitle, title, description, alignment }) {
     return (
-        <div className="text-center max-w-3xl mx-auto px-4 mb-10">
+        <div className={`text-${alignment || 'center'} max-w-3xl mx-auto mb-10`}>
             {/* Subtitle */}
             {subtitle &&
-                <div className="flex items-center justify-center gap-2 text-[var(--primary)] text-sm font-medium mb-2 uppercase">
+                <div className={`flex items-center justify-${alignment || 'center'} gap-2 text-[var(--primary)] text-sm font-medium mb-2 uppercase`}>
                     <FaCar className="text-[var(--primary)]" />
                     <span>{subtitle}</span>
                 </div>

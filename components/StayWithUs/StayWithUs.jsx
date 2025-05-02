@@ -48,7 +48,7 @@ const StayWithUs = () => {
                                     key={index}
                                     className="flex flex-col items-center text-center transform transition-transform duration-300 ease-in-out hover:scale-105"
                                 >
-                                    <div className="flex items-center justify-center h-[50px] w-[50px] rounded-full bg-[var(--primary)] text-white">
+                                    <div className="flex items-center justify-center h-[50px] w-[50px] rounded-full bg-[var(--secondary)] text-white">
                                         {item.icon}
                                     </div>
                                     <h4 className="text-lg leading-6 font-medium text-[var(--text-black)] mt-4">
