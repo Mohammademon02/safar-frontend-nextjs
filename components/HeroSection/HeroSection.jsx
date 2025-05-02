@@ -7,7 +7,7 @@ import { FiSearch } from "react-icons/fi";
 const HeroSection = () => {
     const [date, setDate] = useState("Thu, Oct 06, 2024");
     const [time, setTime] = useState("11 : 20 PM");
-    const [from, setFrom] = useState("Uttora, Dhaka");
+    const [from, setFrom] = useState("Uttara, Dhaka");
     const [to, setTo] = useState("Kandirpar, Cumilla");
 
     return (
