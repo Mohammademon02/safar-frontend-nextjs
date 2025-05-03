@@ -82,7 +82,7 @@ const ImageSlider = () => {
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center z-20 pointer-events-none">
-                <div className="bg-blur bg-opacity-16 backdrop-blur-lg w-full max-w-4xl mx-auto px-6 py-3 text-center mb-8 h-28 flex flex-col justify-center border border-[#FFFFFF80] rounded-[12px] transition-opacity duration-300">
+                <div className="bg-blur bg-opacity-16 backdrop-blur-lg w-full max-w-4xl mx-auto px-6 py-3 text-center mb-8 h-32 flex flex-col justify-center border border-[#FFFFFF80] rounded-[12px] transition-opacity duration-300">
                     <h2 className="text-white text-2xl font-semibold">
                         {AboutUsSlider[activeSlide].caption.title}
                     </h2>
