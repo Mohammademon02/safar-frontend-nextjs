@@ -11,14 +11,9 @@ export default function page() {
                 title='About Us'
                 page_link='about-us'
             />
-
             <ImageSlider />
-
             <MissionVision />
-
             <TeamMembersSection />
-
-
             <DownloadApp />
         </>
     );

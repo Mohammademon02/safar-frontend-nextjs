@@ -5,7 +5,7 @@ import './style.css';
 
 const MissionVision = () => {
     return (
-        <div className="container px-4 sm:px-6 lg:px-8 mission-vision-container py-20">
+        <div className="container px-4 sm:px-6 lg:px-8 mission-vision-container pt-20 pb-10">
             <section className="mission-section">
                 <h2 className="section-heading">Our mission</h2>
                 <p className="section-paragraph">

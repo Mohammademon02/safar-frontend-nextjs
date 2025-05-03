@@ -5,7 +5,7 @@ import SectionTitle from '../Common/SectionTitle/SectionTitle';
 
 const TeamMembersSection = () => {
   return (
-    <section className="py-16 relative overflow-hidden">
+    <section className="pt-10 pb-20 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-32 h-32 border border-gray-200 rounded-full opacity-20"></div>
       <div className="absolute bottom-0 right-0 w-48 h-48 border border-yellow-200 rounded-full opacity-20"></div>
