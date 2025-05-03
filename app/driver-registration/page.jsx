@@ -1,4 +1,5 @@
 'use client'
+import DownloadApp from '@/components/DownloadApp/DownloadApp';
 import React, { useState } from 'react';
 
 export default function page() {
@@ -79,94 +80,99 @@ export default function page() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-16">
-            <div className="mb-8">
-                <h1 className="text-2xl font-medium text-[var(--text-black)] mb-2">Join Us Driver</h1>
-                <p className="text-sm text-[var(--text-gray)]">
-                    Lorem ipsum dolor sit amet consectetur, id faucibus lacinia conque semper vitae consectetur.
-                    <br />
-                    Amet pharetra ipsum suspendisse diam maecenas.
-                </p>
-            </div>
-
-            <div className="mb-8">
-                <h2 className="text-lg font-medium text-[var(--text-black)] mb-4">Please fill the form:</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div>
-                        <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Full Name</label>
-                        <input
-                            type="text"
-                            name="fullName"
-                            value={formData.fullName}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Mobile Number</label>
-                        <input
-                            type="text"
-                            name="mobileNumber1"
-                            placeholder="Enter your mobile number"
-                            value={formData.mobileNumber1}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Mobile Number</label>
-                        <input
-                            type="text"
-                            name="mobileNumber2"
-                            placeholder="Enter your mobile number"
-                            value={formData.mobileNumber2}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
-                        />
-                    </div>
+        <>
+            <div className="max-w-3xl mx-auto px-4 py-16">
+                <div className="mb-8">
+                    <h1 className="text-2xl font-medium text-[var(--text-black)] mb-2">Join Us Driver</h1>
+                    <p className="text-sm text-[var(--text-gray)]">
+                        Lorem ipsum dolor sit amet consectetur, id faucibus lacinia conque semper vitae consectetur.
+                        <br />
+                        Amet pharetra ipsum suspendisse diam maecenas.
+                    </p>
                 </div>
 
+                <div className="mb-8">
+                    <h2 className="text-lg font-medium text-[var(--text-black)] mb-4">Please fill the form:</h2>
 
-            </div>
-
-            <div>
-                <h2 className="text-lg font-medium text-[var(--text-black)] mb-4">Please upload your some document:</h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <DocumentUploadBox documentType="nidPicture" label="Your_NID_picture.jpg" hasUploadIcon hasDeleteIcon />
-                    <DocumentUploadBox documentType="drivingLicense" label="Driving_Licence_picture.jpg" hasDeleteIcon hasUploadIcon />
-
-                    <DocumentUploadBox documentType="registrationPaper" label="Registration_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
-                    <DocumentUploadBox documentType="taxToken" label="TAX_Token_picture.jpg" hasUploadIcon hasDeleteIcon />
-
-                    <DocumentUploadBox documentType="insurancePaper" label="Insurance_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
-                    <DocumentUploadBox documentType="fitnessPaper" label="Fitness_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
-
-                    <DocumentUploadBox documentType="ownerNid" label="Owner_NID_picture.jpg" hasUploadIcon hasDeleteIcon />
-                    <div>
-                        <button
-                            onClick={handleUpload}
-                            className="w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer"
-                        >
-                            Upload
-                        </button>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Full Name</label>
+                            <input
+                                type="text"
+                                name="fullName"
+                                value={formData.fullName}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Mobile Number</label>
+                            <input
+                                type="text"
+                                name="mobileNumber1"
+                                placeholder="Enter your mobile number"
+                                value={formData.mobileNumber1}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-[var(--text-gray)] mb-1">Mobile Number</label>
+                            <input
+                                type="text"
+                                name="mobileNumber2"
+                                placeholder="Enter your mobile number"
+                                value={formData.mobileNumber2}
+                                onChange={handleInputChange}
+                                className="w-full px-4 py-2 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)]"
+                            />
+                        </div>
                     </div>
+
+
                 </div>
 
+                <div>
+                    <h2 className="text-lg font-medium text-[var(--text-black)] mb-4">Please upload your some document:</h2>
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <DocumentUploadBox documentType="nidPicture" label="Your_NID_picture.jpg" hasUploadIcon hasDeleteIcon />
+                        <DocumentUploadBox documentType="drivingLicense" label="Driving_Licence_picture.jpg" hasDeleteIcon hasUploadIcon />
+
+                        <DocumentUploadBox documentType="registrationPaper" label="Registration_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
+                        <DocumentUploadBox documentType="taxToken" label="TAX_Token_picture.jpg" hasUploadIcon hasDeleteIcon />
+
+                        <DocumentUploadBox documentType="insurancePaper" label="Insurance_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
+                        <DocumentUploadBox documentType="fitnessPaper" label="Fitness_Paper_picture.jpg" hasUploadIcon hasDeleteIcon />
+
+                        <DocumentUploadBox documentType="ownerNid" label="Owner_NID_picture.jpg" hasUploadIcon hasDeleteIcon />
+                        <div>
+                            <button
+                                onClick={handleUpload}
+                                className="w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer"
+                            >
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-        </div>
+
+            <DownloadApp />
+
+        </>
     );
 }
