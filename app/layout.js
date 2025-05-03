@@ -6,6 +6,7 @@ import ScrollTop from "@/components/Common/ScrollTop/ScrollTop";
 import "@/app/globals.css";
 import "@/public/css/custom.css";
 import "@/public/css/main.css";
+import AuthInit from "@/AuthInit/AuthInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +41,12 @@ export default function RootLayout({ children }) {
           showAtBottom={false}
           showSpinner={false}
         />
-        <Navbar />
-        {children}
-        <Footer />
-        <ScrollTop />
+        <AuthInit>
+          <Navbar />
+          {children}
+          <Footer />
+          <ScrollTop />
+        </AuthInit>
       </body>
     </html>
   );

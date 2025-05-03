@@ -9,6 +9,7 @@ import { blogs } from '@/data/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import Stats from "@/components/Stats/Stats";
+import useAuthStore from "@/hooks/useAuthStore";
 
 export default function Home() {
   return (

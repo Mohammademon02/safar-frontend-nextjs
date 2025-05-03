@@ -1,18 +1,24 @@
 'use client'
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import useAuthStore from '@/hooks/useAuthStore';
+import http from '@/lib/Http';
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+    const router = useRouter();
+    const { setUser } = useAuthStore();
 
     // React Hook Form setup
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             phone: '',
-            password: '',
-            rememberMe: false
+            password: ''
         }
     });
 
@@ -20,9 +26,83 @@ export default function LoginForm() {
         setShowPassword(!showPassword);
     };
 
-    const onSubmit = (data) => {
-        console.log('Form submitted successfully:', data);
-        // Here you would typically handle authentication
+    // Reset error message when form inputs change
+    useEffect(() => {
+        if (error) setError('');
+    }, [error]);
+
+    const onSubmit = async (data, e) => {
+        // Prevent default form submission behavior
+        if (e) e.preventDefault();
+
+        try {
+            setIsLoading(true);
+            setError('');
+
+            // Wrap the HTTP request in a try-catch to handle network errors
+            let response;
+            try {
+                response = await http.post('/api/user/login', {
+                    phone: data.phone,
+                    password: data.password
+                });
+            } catch (networkErr) {
+                console.error('Network error:', networkErr);
+                throw {
+                    response: {
+                        data: {
+                            message: 'Network error. Please check your connection.'
+                        }
+                    }
+                };
+            }
+
+            // Check if response exists and has data
+            if (!response || !response.data) {
+                throw {
+                    response: {
+                        data: {
+                            message: 'Invalid server response.'
+                        }
+                    }
+                };
+            }
+
+            const responseData = response.data;
+
+            if (responseData.status === 'success') {
+                // Store user data in Zustand and cookies
+                setUser(responseData.user, responseData.access_token);
+
+                // Redirect user based on role
+                if (responseData.user.roles === 'rider') {
+                    router.push('/');
+                } else if (responseData.user.roles === 'ride-captain') {
+                    router.push('/driver-registration');
+                } else {
+                    router.push('/');
+                }
+            } else {
+                // Handle unsuccessful login with valid response
+                setError(responseData.message || 'Login failed. Please try again.');
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            // Enhanced error handling
+            if (err.response && err.response.data) {
+                setError(err.response.data.message || 'Login failed. Please try again.');
+            } else {
+                setError('An unexpected error occurred. Please try again later.');
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // Handle form submission with React Hook Form
+    const formSubmitHandler = (data) => {
+        onSubmit(data);
+        return false; // Explicitly return false to prevent form submission
     };
 
     return (
@@ -44,13 +124,24 @@ export default function LoginForm() {
                     <h2 className="text-[var(--text-black)] text-2xl font-semibold text-center mb-1">WELCOME TO SAFAR FAMILY</h2>
                     <p className="text-center text-[var(--text-gray)] mb-6">WELCOME BACK</p>
 
-                    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+                    {error && (
+                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                            {error}
+                        </div>
+                    )}
+
+                    <form
+                        className="space-y-4"
+                        onSubmit={handleSubmit(formSubmitHandler)}
+                        noValidate
+                        autoComplete="off"
+                    >
                         <div>
                             <div className="relative">
                                 <input
                                     type="tel"
                                     placeholder="+8801625XXXXX"
-                                    className={`w-full bg-white px-4 py-3 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
+                                    className={`w-full bg-white px-4 py-3 border ${errors.phone ? 'border-red-500' : 'border-[#757575]'} focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
                                     {...register('phone', {
                                         required: 'Phone number is required',
                                         pattern: {
@@ -72,7 +163,7 @@ export default function LoginForm() {
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Password"
-                                    className={`w-full bg-white px-4 py-3 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
+                                    className={`w-full bg-white px-4 py-3 border ${errors.password ? 'border-red-500' : 'border-[#757575]'} focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
                                     {...register('password', {
                                         required: 'Password is required',
                                         minLength: {
@@ -117,9 +208,10 @@ export default function LoginForm() {
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer"
+                            disabled={isLoading}
+                            className={`w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
                         >
-                            Log In
+                            {isLoading ? 'Logging in...' : 'Log In'}
                         </button>
                     </form>
                 </div>
