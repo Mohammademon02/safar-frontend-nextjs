@@ -31,7 +31,7 @@ const CompanyOverview = () => {
                             {/* Main play button */}
                             <button
                                 onClick={() => setIsPlaying(true)}
-                                className="w-20 h-20 bg-white bg-opacity-85 rounded-full flex items-center justify-center shadow-lg relative pulse-glow"
+                                className="w-20 h-20 bg-white bg-opacity-85 rounded-full flex items-center justify-center cursor-pointer shadow-lg relative pulse-glow"
                                 aria-label="Play company overview video"
                             >
                                 {/* First wave animation */}
@@ -55,7 +55,7 @@ const CompanyOverview = () => {
                             <div className="absolute inset-0 bg-black z-20 flex items-center justify-center">
                                 <button
                                     onClick={() => setIsPlaying(false)}
-                                    className="absolute top-4 right-4 z-30 bg-white rounded-full p-2 shadow-lg"
+                                    className="absolute top-4 right-4 z-30 bg-white rounded-full p-2 cursor-pointer shadow-lg"
                                     aria-label="Close video"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
