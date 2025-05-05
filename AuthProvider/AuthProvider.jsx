@@ -7,23 +7,25 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const token = getCookie();
 
   useEffect(() => {
     const fetchUser = async () => {
+      const token = getCookie(); // Call inside useEffect to ensure it's client-side
       if (!token) {
+        setUser(null); // Clear user if no token
         return;
       }
 
       try {
         const response = await fetch(
-          `${process.env.NEXT_API_BASE_URL}/api/user/me`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}api/user/me`,
           {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`, // ✅ Include token in headers
             },
-          },
+          }
         );
 
         if (!response.ok) {
@@ -34,11 +36,12 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
       } catch (error) {
         console.error('Error fetching user:', error);
+        setUser(null); // Clear user on failure
       }
     };
 
     fetchUser();
-  }, [token]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

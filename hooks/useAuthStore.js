@@ -1,7 +1,6 @@
 'use client';
 
 import { create } from 'zustand';
-import { useRouter } from 'next/navigation';
 import Http from '@/lib/Http';
 import { removeCookie } from '@/lib/cookie';
 import toast from 'react-hot-toast';
@@ -10,9 +9,9 @@ const useAuthStore = create((set) => ({
   isLoading: false,
   setIsLoading: (value) => set({ isLoading: value }),
 
-  handleSignOut: async () => {
+  // Note: router will be passed from component
+  handleSignOut: async (router) => {
     set({ isLoading: true });
-    const router = useRouter();
 
     try {
       const response = await Http.get('/api/user/logout');
