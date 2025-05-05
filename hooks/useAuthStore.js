@@ -1,79 +1,136 @@
+'use client';
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
-const useAuthStore = create((set) => ({
-  user: null,
-  isAuth: false,
-  accessToken: null,
-  refreshToken: null,
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  setUser: (user, token) => {
-    set({ user, accessToken: token, isAuth: true });
-    Cookies.set('token', token, { expires: 7 }); // Token expires in 7 days
-    Cookies.set('user', JSON.stringify(user), { expires: 7 });
-  },
+const useAuthStore = create(
+  persist(
+    (set) => ({
+      user: null,
+      isAuth: false,
+      token: null,
+      refreshToken: null,
+      tokenExp: null,
 
-  logout: () => {
-    set({ user: null, accessToken: null, refreshToken: null, isAuth: false });
-    Cookies.remove('token');
-    Cookies.remove('user');
-  },
+      login: async (email, password) => {
+        try {
+          const response = await axios.post(`${API_URL}/Login`, {
+            email,
+            password
+          });
 
-  refreshAccessToken: async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/user/refresh-token`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          refresh_token: Cookies.get('refresh_token')
-        })
-      });
+          const {
+            user,
+            status,
+            message,
+            access_token,
+            refresh_token,
+            access_token_exp,
+            is_auth
+          } = response.data;
 
-      if (!res.ok) throw new Error('Refresh failed');
+          if (status === 'success' && is_auth) {
+            Cookies.set('access_token', access_token, {
+              expires: new Date(access_token_exp * 1000),
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'Lax'
+            });
 
-      const data = await res.json();
-      set({ accessToken: data.access_token, isAuth: true });
-      Cookies.set('token', data.access_token, { expires: 7 });
-      return data.access_token;
-    } catch (err) {
-      console.error('Token refresh failed', err);
-      set({ user: null, accessToken: null, refreshToken: null, isAuth: false });
-      Cookies.remove('token');
-      Cookies.remove('user');
-      Cookies.remove('refresh_token');
-      return null;
-    }
-  },
+            Cookies.set('refresh_token', refresh_token, {
+              expires: 30,
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'Lax'
+            });
 
-  setUserFromCookies: () => {
-    const token = Cookies.get('token');
-    const userString = Cookies.get('user');
-    const refreshToken = Cookies.get('refresh_token');
+            set({
+              user,
+              isAuth: true,
+              token: access_token,
+              refreshToken: refresh_token,
+              tokenExp: access_token_exp
+            });
 
-    if (token && userString) {
-      try {
-        const user = JSON.parse(userString);
-        set({
-          user,
-          accessToken: token,
-          refreshToken,
-          isAuth: true
-        });
-      } catch (error) {
-        console.error('Error parsing user from cookie:', error);
-        Cookies.remove('user');
+            return { success: true };
+          }
+
+          return { success: false, message: message || 'Authentication failed' };
+        } catch (error) {
+          console.error('Login error:', error);
+          return {
+            success: false,
+            message: error.response?.data?.message || 'Login failed. Please try again.'
+          };
+        }
+      },
+
+      logout: async () => {
+        try {
+          const token = Cookies.get('access_token');
+          if (token) {
+            await axios.post(`${API_URL}/Logout`, {}, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Logout API error:', error);
+        } finally {
+          Cookies.remove('access_token');
+          Cookies.remove('refresh_token');
+          set({
+            user: null,
+            isAuth: false,
+            token: null,
+            refreshToken: null,
+            tokenExp: null
+          });
+        }
+      },
+
+      refreshAccessToken: async () => {
+        try {
+          const refreshToken = Cookies.get('refresh_token');
+
+          if (!refreshToken) {
+            set({ isAuth: false, user: null, token: null });
+            return false;
+          }
+
+          const response = await axios.post(`${API_URL}/RefreshToken`, {
+            refresh_token: refreshToken
+          });
+
+          const { access_token, access_token_exp } = response.data;
+
+          if (access_token) {
+            Cookies.set('access_token', access_token, {
+              expires: new Date(access_token_exp * 1000),
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'Lax'
+            });
+
+            set({ token: access_token, tokenExp: access_token_exp });
+            return true;
+          }
+
+          return false;
+        } catch (error) {
+          console.error('Token refresh error:', error);
+          set({ isAuth: false, user: null, token: null });
+          return false;
+        }
       }
+    }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => localStorage)
     }
-  },
-
-  // Function to store refresh token
-  setRefreshToken: (refreshToken) => {
-    set({ refreshToken });
-    Cookies.set('refresh_token', refreshToken, { expires: 30 }); // Refresh token lasts longer
-  }
-}));
+  )
+);
 
 export default useAuthStore;

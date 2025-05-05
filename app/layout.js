@@ -3,10 +3,10 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import NextTopLoader from "nextjs-toploader";
 import ScrollTop from "@/components/Common/ScrollTop/ScrollTop";
+import AuthProvider from "@/AuthProvider/AuthProvider";
 import "@/app/globals.css";
 import "@/public/css/custom.css";
 import "@/public/css/main.css";
-import AuthInit from "@/AuthInit/AuthInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,12 +41,12 @@ export default function RootLayout({ children }) {
           showAtBottom={false}
           showSpinner={false}
         />
-        <AuthInit>
+        <AuthProvider>
           <Navbar />
           {children}
           <Footer />
           <ScrollTop />
-        </AuthInit>
+        </AuthProvider>
       </body>
     </html>
   );
