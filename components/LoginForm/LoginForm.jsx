@@ -2,10 +2,21 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { LuLoader } from 'react-icons/lu';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useUserStore } from '@/hooks/useUser';
+import axios from 'axios';
+import { setCookie } from '@/lib/cookie';
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState({ type: '', text: '' });
+    const router = useRouter();
+    const { setUser } = useUserStore();
+
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     // React Hook Form setup
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -20,7 +31,40 @@ export default function LoginForm() {
     };
 
     const onSubmit = async (data) => {
-        console.log("Form subbmited successfully", data)
+        setLoading(true);
+        setMessage({ type: '', text: '' });
+
+        try {
+            const loginPayload = {
+                phone: data.phone,
+                password: data.password
+            }
+
+            const response = await axios.post(`${BASE_URL}api/user/login`, loginPayload);
+            console.log(response.data);
+            if (response.data.result) {
+                const userInfo = {
+                    token: response.data.access_token,
+                    ...response.data.user
+                }
+                setCookie(response.data.access_token);
+                setUser(userInfo);
+                setMessage({ type: 'success', text: 'Login successful' });
+                if (window !== undefined) {
+                    window.location.reload();
+                }
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+            setMessage({
+                type: 'error',
+                text:
+                    'Login Failed, Invalid phone number or password.' ||
+                    'Login failed. Please try again.',
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -104,7 +148,6 @@ export default function LoginForm() {
                                 <input
                                     type="checkbox"
                                     id="rememberMe"
-                                    {...register('rememberMe')}
                                     className="h-4 w-4 text-[var(--secondary)] focus:ring-[var(--secondary)] border-gray-300 rounded"
                                 />
                                 <label htmlFor="rememberMe" className="ml-2 text-sm text-[var(--text-gray)]">
@@ -120,9 +163,14 @@ export default function LoginForm() {
 
                         <button
                             type="submit"
-                            className={`w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer`}
+                            className={`w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer text-center`}
+                            disabled={loading}
                         >
-                            Log In
+                            {loading ?
+                                <LuLoader className="animate-spin " />
+                                :
+                                'Log In'
+                            }
                         </button>
                     </form>
                 </div>
