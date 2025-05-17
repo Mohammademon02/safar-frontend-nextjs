@@ -3,11 +3,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CgMenuRight, CgClose } from "react-icons/cg";
-import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaUser, FaXTwitter } from "react-icons/fa6";
 import { ImInstagram } from "react-icons/im";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import "./style.css";
+import { useUserStore } from "@/hooks/useUser";
+import { getCookie } from "@/lib/cookie";
 
 const Navbar = () => {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -28,6 +29,9 @@ const Navbar = () => {
     };
 
 
+    const { user } = useUserStore();
+    const token = getCookie();
+    console.log('FromNavbar', user);
 
     return (
         <header className="navbar bg-[var(--black)] text-white py-4 header" id="navbar">
@@ -364,20 +368,31 @@ const Navbar = () => {
                 </div>
 
                 {/* User Menu */}
-                <div className="flex items-center gap-x-5 relative">
-                    <Link
-                        className="px-[30px] py-[12px] bg-[#212121] text-[#FFFFFF] rounded-full whitespace-nowrap"
-                        href="/login"
-                    >
-                        Log in
-                    </Link>
-                    <Link
-                        className="px-[30px] py-[12px] bg-[var(--secondary)] text-[#FFFFFF] rounded-full whitespace-nowrap"
-                        href="/register"
-                    >
-                        Sign up
-                    </Link>
-                </div>
+                {token ? (
+                    <div className="flex items-center gap-x-5 relative">
+                        <Link
+                            className="px-[30px] py-[12px] bg-[var(--secondary)] text-[#FFFFFF] rounded-full whitespace-nowrap"
+                            href="/account"
+                        >
+                            <FaUser className="text-2xl" />
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="flex items-center gap-x-5 relative">
+                        <Link
+                            className="px-[30px] py-[12px] bg-[#212121] text-[#FFFFFF] rounded-full whitespace-nowrap"
+                            href="/login"
+                        >
+                            Log in
+                        </Link>
+                        <Link
+                            className="px-[30px] py-[12px] bg-[var(--secondary)] text-[#FFFFFF] rounded-full whitespace-nowrap"
+                            href="/register"
+                        >
+                            Sign up
+                        </Link>
+                    </div>
+                )}
             </nav>
         </header>
     );
