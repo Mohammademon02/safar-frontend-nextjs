@@ -48,6 +48,7 @@ export default function LoginForm() {
                     ...response.data.user
                 }
                 setCookie(response.data.access_token, ``);
+                console.log(userInfo);
                 setUser(userInfo);
                 setMessage({ type: 'success', text: 'Login successful' });
                 if (window !== undefined) {
