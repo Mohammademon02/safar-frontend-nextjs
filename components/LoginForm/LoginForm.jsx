@@ -42,12 +42,12 @@ export default function LoginForm() {
 
             const response = await axios.post(`${BASE_URL}api/user/login`, loginPayload);
             console.log(response.data);
-            if (response.data.result) {
+            if (response.data.status === 'success') {
                 const userInfo = {
                     token: response.data.access_token,
                     ...response.data.user
                 }
-                setCookie(response.data.access_token);
+                setCookie(response.data.access_token, ``);
                 setUser(userInfo);
                 setMessage({ type: 'success', text: 'Login successful' });
                 if (window !== undefined) {
@@ -85,6 +85,11 @@ export default function LoginForm() {
                 <div className="w-full max-w-sm">
                     <h2 className="text-[var(--text-black)] text-2xl font-semibold text-center mb-1">WELCOME TO SAFAR FAMILY</h2>
                     <p className="text-center text-[var(--text-gray)] mb-6">WELCOME BACK</p>
+
+                    {/* display here the message */}
+                    {message.type && (
+                        <p className={`text-sm mt-2 ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'} p-4 rounded-md mb-4`}>{message.text}</p>
+                    )}
 
                     <form
                         className="space-y-4"

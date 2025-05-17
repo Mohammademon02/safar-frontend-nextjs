@@ -2,6 +2,7 @@
 
 import { getCookie } from '@/lib/cookie';
 import { createContext, useContext, useState, useEffect } from 'react';
+import Http from '@/lib/Http';
 
 const AuthContext = createContext();
 
@@ -10,23 +11,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = getCookie(); // Call inside useEffect to ensure it's client-side
+      const token = getCookie();
       if (!token) {
-        setUser(null); // Clear user if no token
+        setUser(null);
         return;
       }
 
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}api/user/me`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`, // ✅ Include token in headers
-            },
-          }
-        );
+        const response = await Http.get('api/user/me');
 
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
@@ -36,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
       } catch (error) {
         console.error('Error fetching user:', error);
-        setUser(null); // Clear user on failure
+        setUser(null);
       }
     };
 

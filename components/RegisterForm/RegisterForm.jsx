@@ -3,10 +3,20 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useUserStore } from '@/hooks/useUser';
 
 export default function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [formMessage, setFormMessage] = useState({ type: '', text: '' });
+
+
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+    const router = useRouter();
+    const { setUser } = useUserStore();
 
     // React Hook Form setup
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -16,7 +26,6 @@ export default function RegisterForm() {
             phone: '',
             password: '',
             confirmPassword: '',
-            terms: false
         }
     });
 
@@ -31,9 +40,55 @@ export default function RegisterForm() {
         setShowConfirmPassword(!showConfirmPassword);
     };
 
-    const onSubmit = (data) => {
-        console.log('Form submitted successfully:', data);
-        // Here you would typically handle registration
+    const onSubmit = async (data) => {
+        setIsLoading(true);
+        setFormMessage({ type: '', text: '' });
+
+        try {
+
+            let registerPayload = {
+                name: data.fullName,
+                dob: data.dob,
+                phone: data.phone,
+                password: data.password,
+                password_confirmation: data.confirmPassword,
+                role: 'rider'
+            }
+
+            const response = await axios.post(`${BASE_URL}api/user/register`, registerPayload);
+            console.log(response.data);
+
+            if (response.data.status === 'success') {
+                const userInfo = {
+                    ...response.data
+                }
+                setUser(userInfo);
+                reset();
+                setFormMessage({
+                    type: 'success',
+                    text:
+                        'Registered successfully. Check your phone for the OTP' ||
+                        'Registration successful.',
+                });
+                setTimeout(() => {
+                    router.push('/verify-otp');
+                }, 800);
+            } else {
+                setFormMessage({
+                    type: 'error',
+                    text: response.data.message || 'Registration failed. Please try again.',
+                });
+                reset();
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+            setFormMessage({
+                type: 'error',
+                text: 'Registration failed. Please try again.',
+            });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -54,6 +109,10 @@ export default function RegisterForm() {
                 <div className="w-full max-w-sm">
                     <h2 className="text-2xl font-semibold text-center mb-1 text-[var(--text-black)]">WELCOME TO SAFAR FAMILY</h2>
                     <p className="text-center text-[var(--text-gray)] mb-6">GET STARTED</p>
+                    {/* display here the message */}
+                    {formMessage.type && (
+                        <p className={`text-sm mt-2 ${formMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'} p-4 rounded-md mb-4`}>{formMessage.text}</p>
+                    )}
 
                     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                         <div>
