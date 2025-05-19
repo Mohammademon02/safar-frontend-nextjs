@@ -371,10 +371,10 @@ const Navbar = () => {
                 {token ? (
                     <div className="flex items-center gap-x-5 relative">
                         <Link
-                            className="px-[30px] py-[12px] bg-[var(--secondary)] text-[#FFFFFF] rounded-full whitespace-nowrap"
-                            href="/account"
+                            className="bg-[var(--secondary)]  p-2 rounded-full text-[#FFFFFF] hover:text-[var(--primary)] whitespace-nowrap"
+                            href="/dashboard"
                         >
-                            <FaUser className="text-2xl" />
+                            <FaUser size={18} />
                         </Link>
                     </div>
                 ) : (

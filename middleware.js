@@ -9,7 +9,6 @@ export async function middleware(req) {
   const protectedRoutes = [
     '/dashboard',
     '/dashboard/:path*',
-    '/profile',
     '/driver-registration'
   ];
 
@@ -27,7 +26,7 @@ export async function middleware(req) {
   if (authRoutes.includes(req.nextUrl.pathname)) {
     if (token) {
       // Redirect to dashboard if token exists
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL('/dashboard', req.url));
     }
   }
 
