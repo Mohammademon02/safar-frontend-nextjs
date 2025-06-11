@@ -1,30 +1,20 @@
 'use client';
 
-import { getCookie } from '@/lib/cookie';
 import { createContext, useContext, useState, useEffect } from 'react';
-import Http from '@/lib/Http';
+import axiosInstance from '@/lib/axios';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+
   useEffect(() => {
     const fetchUser = async () => {
-      const token = getCookie();
-      if (!token) {
-        setUser(null);
-        return;
-      }
-
       try {
-        const response = await Http.get('api/user/me');
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-
-        const data = await response.json();
+        const response = await axiosInstance.get('api/user/me', { withCredentials: true });
+        const data = response.data;
+        console.log("profile data", data)
         setUser(data);
       } catch (error) {
         console.error('Error fetching user:', error);

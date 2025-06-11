@@ -6,8 +6,8 @@ import { LuLoader } from 'react-icons/lu';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/hooks/useUser';
-import axios from 'axios';
 import { setCookie } from '@/lib/cookie';
+import axiosInstance from '@/lib/axios';
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,6 @@ export default function LoginForm() {
     const router = useRouter();
     const { setUser } = useUserStore();
 
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     // React Hook Form setup
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -40,14 +39,16 @@ export default function LoginForm() {
                 password: data.password
             }
 
-            const response = await axios.post(`${BASE_URL}api/user/login`, loginPayload);
-            console.log(response.data);
-            if (response.data.status === 'success') {
+            const response = await axiosInstance.post(`api/user/login`, loginPayload, { withCredentials: true });
+    
+            const result = response?.data;
+
+            if (result.status === 'success') {
                 const userInfo = {
-                    token: response.data.access_token,
-                    ...response.data.user
+                    token: result.access_token,
+                    ...result.user
                 }
-                setCookie(response.data.access_token);
+                setCookie(result.access_token);
                 setUser(userInfo);
                 setMessage({ type: 'success', text: 'Login successful' });
                 if (window !== undefined) {
@@ -168,8 +169,8 @@ export default function LoginForm() {
 
                         <button
                             type="submit"
-                            className={`w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer text-center`}
                             disabled={loading}
+                            className={`w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer flex items-center justify-center`}
                         >
                             {loading ?
                                 <LuLoader className="animate-spin " />

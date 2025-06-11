@@ -12,7 +12,7 @@ export async function middleware(req) {
     '/driver-registration'
   ];
 
-  const authRoutes = ['/login', '/register', '/forgot-password'];
+  const authRoutes = ['/login', '/register', '/forgot-password', '/verify-otp'];
 
   // Redirect to auth routes if no token
   if (protectedRoutes.includes(req.nextUrl.pathname)) {

@@ -31,7 +31,6 @@ const Navbar = () => {
 
     const { user } = useUserStore();
     const token = getCookie();
-    console.log('FromNavbar', user);
 
     return (
         <header className="navbar bg-[var(--black)] text-white py-4 header" id="navbar">

@@ -10,8 +10,8 @@ import {
 } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
+import axiosInstance from '@/lib/axios';
 import { removeCookie } from '@/lib/cookie';
-import Http from '@/lib/Http';
 
 export default function Sidebar() {
     const pathName = usePathname();
@@ -20,33 +20,20 @@ export default function Sidebar() {
     const handleSignOut = async () => {
         try {
             setIsLoading(true);
-            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://safar-back-end-v3.vercel.app/';
 
-            // Ensure the base URL doesn't have a trailing slash if the endpoint starts with one
-            const url = `${baseUrl}api/user/logout`
+            const response = await axiosInstance.post("api/user/logout", { withCredentials: true })
 
-            const response = await fetch(url, {
-                method: 'GET',
-                credentials: 'include',
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const data = await response.json();
+            const data = response.data;
 
             if (data.status === 'success') {
+                removeCookie();
                 localStorage.removeItem('user');
-
-                toast.success('You have successfully logged out');
                 if (typeof window !== 'undefined') {
                     window.location.href = '/';
                 }
             }
         } catch (error) {
-            toast.error('Something went wrong');
-            // console.error(error);
+            console.error(error);
         } finally {
             setIsLoading(false);
         }

@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/hooks/useUser';
+import axiosInstance from '@/lib/axios';
+import { LuLoader } from 'react-icons/lu';
 
 export default function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -14,12 +15,11 @@ export default function RegisterForm() {
     const [formMessage, setFormMessage] = useState({ type: '', text: '' });
 
 
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
     const router = useRouter();
     const { setUser } = useUserStore();
 
     // React Hook Form setup
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
         defaultValues: {
             fullName: '',
             dob: '',
@@ -55,12 +55,13 @@ export default function RegisterForm() {
                 role: 'rider'
             }
 
-            const response = await axios.post(`${BASE_URL}api/user/register`, registerPayload);
+            const response = await axiosInstance.post(`api/user/register`, registerPayload);
             console.log(response.data);
 
             if (response.data.status === 'success') {
                 const userInfo = {
-                    ...response.data
+                    ...response.data,
+                    phone: data.phone, 
                 }
                 setUser(userInfo);
                 reset();
@@ -78,10 +79,10 @@ export default function RegisterForm() {
                     type: 'error',
                     text: response.data.message || 'Registration failed. Please try again.',
                 });
-                reset();
+                // reset();
             }
         } catch (error) {
-            console.error('Login failed:', error);
+            console.error('Registration failed:', error);
             setFormMessage({
                 type: 'error',
                 text: 'Registration failed. Please try again.',
@@ -161,7 +162,7 @@ export default function RegisterForm() {
                             <div className="relative">
                                 <input
                                     type="tel"
-                                    placeholder="+8801625XXXXX"
+                                    placeholder="01625XXXXX"
                                     className={`w-full bg-white px-4 py-3 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
                                     {...register('phone', {
                                         required: 'Phone number is required',
@@ -256,9 +257,14 @@ export default function RegisterForm() {
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer"
+                            disabled={isLoading}
+                            className="w-full py-3 bg-[var(--secondary)] hover:bg-transparent text-white hover:text-[var(--secondary)] border border-[var(--secondary)] hover:border-[var(--secondary)] rounded-full transition-colors cursor-pointer flex items-center justify-center"
                         >
-                            Sign Up
+                            {isLoading ?
+                                <LuLoader className="animate-spin " />
+                                :
+                                'Sign Up'
+                            }
                         </button>
                     </form>
                 </div>
