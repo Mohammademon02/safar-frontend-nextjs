@@ -162,7 +162,7 @@ export default function RegisterForm() {
                             <div className="relative">
                                 <input
                                     type="tel"
-                                    placeholder="01625XXXXX"
+                                    placeholder="01XXXXXXXXX"
                                     className={`w-full bg-white px-4 py-3 border border-[#757575] focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
                                     {...register('phone', {
                                         required: 'Phone number is required',

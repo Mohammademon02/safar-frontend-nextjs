@@ -102,7 +102,7 @@ export default function LoginForm() {
                             <div className="relative">
                                 <input
                                     type="tel"
-                                    placeholder="+8801625XXXXX"
+                                    placeholder="01XXXXXXXXX"
                                     className={`w-full bg-white px-4 py-3 border ${errors.phone ? 'border-red-500' : 'border-[#757575]'} focus:border-[var(--secondary)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--secondary)] pl-10`}
                                     {...register('phone', {
                                         required: 'Phone number is required',
@@ -161,7 +161,7 @@ export default function LoginForm() {
                                 </label>
                             </div>
                             <div>
-                                <Link href="/forgot-password" className="text-sm text-[#5F78FF]">
+                                <Link href="/reset-password" className="text-sm text-[#5F78FF]">
                                     Forgot Password?
                                 </Link>
                             </div>
